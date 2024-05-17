@@ -1,0 +1,39 @@
+*{
+    margin: 0 0;
+    padding: 0 0;
+}
+
+nav{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: black;
+    color: white;
+    padding: 20px 20px;
+    
+}
+
+.links{
+    color: white;
+    margin: 0 10px;
+    /* margin: 0 0; */
+    padding: 14px 10px;
+    font-size: 19px;
+    text-decoration: none;
+}
+
+.links:hover{
+    color: black;
+    background-color: white;
+    transition: ease-in-out 0.6s;
+
+}
+
+.mainlink{
+    color: white;
+    text-decoration: none;
+}
+
+
+
+

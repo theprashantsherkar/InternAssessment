@@ -1,5 +1,6 @@
 import jwt from "jsonwebtoken"
-import { User } from "../models/user"
+import { User } from "../models/user.js"
+// import mongoose from "mongoose"
 import bcrypt from 'bcrypt'
 
 export const registerUser = async(req, res) => {
@@ -13,11 +14,12 @@ export const registerUser = async(req, res) => {
     
     const hashedpassword = await bcrypt.hash(password, 10)
     
-    const newUser = User.create({
-                    name,
-                    email,
-                    hashedpassword
-                })
+    const newUser =
+         User.create({
+            name,
+            email,
+            password:hashedpassword
+    })
     
 
     const token = jwt.sign({ _id: newUser._id }, process.env.JWT_SECRET)
@@ -49,21 +51,21 @@ export const loginUser = async(req, res) => {
 
     })
 
-    const token = jwt.sign({ _id: oldUser._id })
+    const token = jwt.sign({ _id: oldUser._id }, process.env.JWT_SECRET)
 
     res.status(201).cookie("token",token,{}).json({
         success: true,
         message: `welcome back ${oldUser.name}`
-    }).redirect('/dashboard')
+    })
 
 
 }
 
-export const dashboardPage = (req, res) => {
+// export const dashboardPage = (req, res) => {
     
-}
+// }
 
 
-export const landing = (req, res) => {
+// export const landing = (req, res) => {
     
-}
+// }
