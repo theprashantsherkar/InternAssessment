@@ -9,6 +9,8 @@ config({
     path:"./data/config.env"
 })
 
+
+
 app.use(express.json())
 app.use('/users', userRoute)  
 app.use(

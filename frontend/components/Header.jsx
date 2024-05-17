@@ -10,7 +10,7 @@ function Header() {
                 <div className="heading">
                     <Link className='mainlink' to='/'>
                         <h2>
-                            Assessment
+                            Assessment.
                         </h2>
                     </Link>
                 </div>
@@ -25,5 +25,6 @@ function Header() {
         </>
     )
 }
+
 
 export default Header

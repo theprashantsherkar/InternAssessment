@@ -8,6 +8,7 @@ import {
 const router = express.Router()
  
 
+
 // router.get('/', landing) 
 
 router.post('/register', registerUser)   //tested

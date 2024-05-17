@@ -33,6 +33,8 @@ function Register() {
       toast.success(data.message)
       
 
+      
+
     } catch (error) {
       toast.error("something went wrong")
       console.log(error)
