@@ -1,6 +1,6 @@
 import { app } from "./app.js";
 import express from 'express'
-import { connectDB } from "./data/databse.js";
+import { connectDB } from "./data/database.js";
 
 connectDB()
 
