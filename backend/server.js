@@ -1,7 +1,15 @@
 import { app } from "./app.js";
-import express from 'express'
+import cors from 'cors'
 import { connectDB } from "./data/database.js";
 
+app.use(cors({
+    origin: "*",
+    credentials: false,
+    optionsSuccessStatus: 200,
+   
+    
+
+}))
 connectDB()
 
 app.listen(process.env.PORT, () => {

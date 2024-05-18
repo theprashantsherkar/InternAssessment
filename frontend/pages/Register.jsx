@@ -3,7 +3,8 @@ import '../styles/register.css'
 import { Link, Navigate } from 'react-router-dom'
 import axios from 'axios'
 import toast from 'react-hot-toast'
-// import { server } from '../src/main'
+import { server } from '../src/main'
+
 
 
 
@@ -19,20 +20,19 @@ function Register() {
   const submitHandler = async (e) => {
     e.preventDefault()
     try {
-      const { data } = await axios.post('/users/register', {
+      
+      const { data } = await axios.post(`${server}/register`, {
         name, email, password
-      }, {
-        headers: {
-          "Content-Type": 'application-json',
-
-        },
-        withCredentials: true,
-
-      })
+      },
+        {
+          headers: {
+            "Content-Type": 'application/json',
+                        
+          },
+          
+        })
 
       toast.success(data.message)
-      
-
       
 
     } catch (error) {

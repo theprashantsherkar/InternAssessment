@@ -1,39 +1,34 @@
 import React, { useState } from 'react'
 import '../styles/login.css'
 import { Link, Navigate } from 'react-router-dom'
-
 import toast from 'react-hot-toast'
 import axios from 'axios'
-
-
-
+import { server } from '../src/main'
 
 
 function Login() {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
-  
+
   const submitHandler = async (e) => {
     e.preventDefault()
     try {
-      const { data } = await axios.post('/users/login', {
+      const { data } = await axios.post(`${server}/login`, {
         email, password
       }, {
         headers: {
-          "Content-Type": 'application-json',
-
+          "Content-Type": "application/json"
         },
-        withCredentials: true,
-
-      })
+      }
+      )
 
       toast.success(data.message)
-    
+
 
     } catch (error) {
       toast.error("something went wrong")
       console.log(error)
-      
+
     }
   }
 

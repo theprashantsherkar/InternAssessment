@@ -4,9 +4,7 @@ import App from './App.jsx'
 
 
 
-export const router = () => {
-  
-}
+export const server = 'http://localhost:5000/users'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
