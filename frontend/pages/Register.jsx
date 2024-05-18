@@ -3,7 +3,7 @@ import '../styles/register.css'
 import { Link, Navigate } from 'react-router-dom'
 import axios from 'axios'
 import toast from 'react-hot-toast'
-import { server } from '../src/main'
+import { server } from '../src/main.jsx'
 
 
 
@@ -14,6 +14,7 @@ function Register() {
   const [name, setName] = useState("")
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
+  const [success, setSuccess] = useState(false)
 
 
 
@@ -33,13 +34,16 @@ function Register() {
         })
 
       toast.success(data.message)
+      setSuccess(true)
       
 
     } catch (error) {
       toast.error("something went wrong")
       console.log(error)
+      setSuccess(false)
       
     }
+    if(success) return <Navigate to={'/profile'}/>
   }
 
  

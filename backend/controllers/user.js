@@ -53,12 +53,25 @@ export const loginUser = async(req, res) => {
 
     const token = jwt.sign({ _id: oldUser._id }, process.env.JWT_SECRET)
 
-    res.status(201).cookie("token",token,{}).json({
+    res.status(201).cookie("token", token, {
+        httpOnly: true,
+        maxAge: 15 * 60 * 1000,
+        
+    }).json({
         success: true,
         message: `welcome back ${oldUser.name}`
     })
 
 
+}
+
+export const profile = (req, res, next) => {
+    res.json({
+        success: true,
+        message: `welcome back ${req.user.name}`,
+        user:req.user
+       
+    })
 }
 
 // export const dashboardPage = (req, res) => {

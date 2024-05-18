@@ -8,9 +8,17 @@ import cors from 'cors'
 
 export const app = express()
 
+
 config({
-    path:"./data/config.env"
+    path: "./data/config.env"
 })
+
+
+app.use(cors({
+    origin: "*",
+    
+    optionsSuccessStatus: 200,
+}))
 
 
 app.use(express.json())

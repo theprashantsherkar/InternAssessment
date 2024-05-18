@@ -5,6 +5,7 @@ import Login from '../pages/Login.jsx'
 import Register from '../pages/Register.jsx'
 import Home from '../pages/Home.jsx'
 import { Toaster } from 'react-hot-toast'
+import Profile from '../components/Profile.jsx'
 
 
 
@@ -17,6 +18,7 @@ function App() {
           <Route path='/' element={<Home />} />
           <Route path='/login' element={<Login />} />
           <Route path='/register' element={<Register />} />
+          <Route path='/profile' element={<Profile/>} />
 
 
         </Routes>
