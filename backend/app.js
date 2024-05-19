@@ -15,17 +15,17 @@ config({
 
 
 app.use(cors({
-    origin: "*",
-    
+    origin: "*",  
     optionsSuccessStatus: 200,
 }))
 
 
 app.use(express.json())
-app.use('/users', userRoute)  
+app.use(cookieParser())
+app.use(bodyParser.urlencoded({ extended: true }))
 app.use(
     express.urlencoded({ extended: true })
 );
-app.use(cookieParser())
-app.use(bodyParser.urlencoded({ extended: true }))
+
+app.use('/users', userRoute)  
 

@@ -1,22 +1,17 @@
 import React, { useState } from 'react'
 import '../styles/register.css'
-import { Link, Navigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import toast from 'react-hot-toast'
 import { server } from '../src/main.jsx'
 
 
-
-
-
 function Register() {
-
+  const navigate = useNavigate()
   const [name, setName] = useState("")
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [success, setSuccess] = useState(false)
-
-
 
   const submitHandler = async (e) => {
     e.preventDefault()
@@ -27,12 +22,11 @@ function Register() {
       },
         {
           headers: {
-            "Content-Type": 'application/json',
-                        
+            "Content-Type": 'application/json',                       
           },
           
         })
-
+            
       toast.success(data.message)
       setSuccess(true)
       
@@ -43,7 +37,8 @@ function Register() {
       setSuccess(false)
       
     }
-    if(success) return <Navigate to={'/profile'}/>
+   
+    if(success) return navigate('/profile')
   }
 
  

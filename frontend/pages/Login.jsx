@@ -1,14 +1,16 @@
 import React, { useState } from 'react'
 import '../styles/login.css'
-import { Link, Navigate } from 'react-router-dom'
+import { Link, useNavigate} from 'react-router-dom'
 import toast from 'react-hot-toast'
 import axios from 'axios'
 import { server } from '../src/main.jsx'
 
 
 function Login() {
+  const navigate = useNavigate()
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
+  const [success, setSuccess] = useState(false)
 
   const submitHandler = async (e) => {
     e.preventDefault()
@@ -22,26 +24,23 @@ function Login() {
       }
         )
       
-      // const { data } = await fetch(`${server}/login`, {
-      //   method: 'POST',
-      //   body: JSON.stringify({
-      //     email: email,
-      //     password : password
-      //   }),
-      //   headers: {
-      //     "Content-Type": "application/json",
-
-      //   }
-      // })
 
       toast.success(data.message)
+      setSuccess(true)
 
 
     } catch (error) {
       toast.error("something went wrong")
       console.log(error)
+      setSuccess(false)
 
     }
+
+    if(success) return navigate('/profile')
+    
+
+    
+
   }
 
 

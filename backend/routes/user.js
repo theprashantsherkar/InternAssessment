@@ -16,6 +16,7 @@ const router = express.Router()
 router.post('/register', registerUser)   //tested
 router.post('/login', loginUser)   //tested
 router.get('/profile', isAuthenticated, profile)
+
 // router.get('/dashboard', dashboardPage)
 
 

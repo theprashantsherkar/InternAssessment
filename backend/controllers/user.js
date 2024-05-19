@@ -23,18 +23,18 @@ export const registerUser = async(req, res) => {
     
 
     const token = jwt.sign({ _id: newUser._id }, process.env.JWT_SECRET)
-    
 
     res.status(200).cookie("token", token, {
         httpOnly: true,
-        maxAge: 15 * 60 * 1000
+        expires: new Date(Date.now() + 1000 * 60 * 15)
         
     }).json({
         success: true,
         message: 'user registered successfully'
         
     })
-}
+    // if (res.success == "true") return res.redirect('/profile') 
+}   
 
 export const loginUser = async(req, res) => {
     const { email, password } = req.body
@@ -55,12 +55,14 @@ export const loginUser = async(req, res) => {
 
     res.status(201).cookie("token", token, {
         httpOnly: true,
-        maxAge: 15 * 60 * 1000,
+        expires: new Date(Date.now() + 1000 * 60 * 15)
+        
         
     }).json({
         success: true,
         message: `welcome back ${oldUser.name}`
     })
+    // if (res.success == "true") return res.redirect('/profile') 
 
 
 }
@@ -68,8 +70,9 @@ export const loginUser = async(req, res) => {
 export const profile = (req, res, next) => {
     res.json({
         success: true,
-        message: `welcome back ${req.user.name}`,
-        user:req.user
+        message: `welcome back`,
+        user:req.user.name
+        
        
     })
 }
