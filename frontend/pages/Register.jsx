@@ -21,24 +21,27 @@ function Register() {
         name, email, password
       },
         {
+          
           headers: {
             "Content-Type": 'application/json',                       
           },
+         
           
         })
             
       toast.success(data.message)
-      setSuccess(true)
+      navigate('/profile', {state:{id:data.message}})
+
       
 
     } catch (error) {
       toast.error("something went wrong")
       console.log(error)
-      setSuccess(false)
+    
       
     }
    
-    if(success) return navigate('/profile')
+   
   }
 
  

@@ -15,22 +15,24 @@ export const registerUser = async(req, res) => {
     const hashedpassword = await bcrypt.hash(password, 10)
     
     const newUser =
-         User.create({
+         await User.create({
             name,
             email,
             password:hashedpassword
-    })
+         })
+    
     
 
     const token = jwt.sign({ _id: newUser._id }, process.env.JWT_SECRET)
 
     res.status(200).cookie("token", token, {
         httpOnly: true,
-        expires: new Date(Date.now() + 1000 * 60 * 15)
+        maxAge: new Date(Date.now() + 1000 * 60 * 15)
         
     }).json({
         success: true,
-        message: 'user registered successfully'
+        message: `Welcome ${newUser.name}`,
+        notifcation: 'user registered successfully',
         
     })
     // if (res.success == "true") return res.redirect('/profile') 
@@ -55,7 +57,7 @@ export const loginUser = async(req, res) => {
 
     res.status(201).cookie("token", token, {
         httpOnly: true,
-        expires: new Date(Date.now() + 1000 * 60 * 15)
+        maxAge: new Date(Date.now() + 1000 * 60 * 15)
         
         
     }).json({
@@ -74,6 +76,16 @@ export const profile = (req, res, next) => {
         user:req.user.name
         
        
+    })
+}
+
+export const logout = (req, res, next) => {
+    res.status(200).cookie("token", "", {
+        httpOnly: true,
+        maxAge:Date.now()
+    }).json({
+        success: true,
+        message:"successfully logged out."
     })
 }
 

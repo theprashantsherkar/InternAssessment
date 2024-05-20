@@ -4,7 +4,8 @@ import { isAuthenticated } from '../middlewares/auth.js'
 import {
     profile,
     loginUser,
-    registerUser
+    registerUser,
+    logout
 } from '../controllers/user.js'
 
 const router = express.Router()
@@ -16,7 +17,7 @@ const router = express.Router()
 router.post('/register', registerUser)   //tested
 router.post('/login', loginUser)   //tested
 router.get('/profile', isAuthenticated, profile)
-
+router.get('/logout', logout)
 // router.get('/dashboard', dashboardPage)
 
 
